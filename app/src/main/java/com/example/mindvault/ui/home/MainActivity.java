@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         navFlashcards = findViewById(R.id.navFlashcards);
         navProfile = findViewById(R.id.navProfile);
 
+        navHome.setOnClickListener(v -> loadFragment(new HomeFragment()));
         navNotes.setOnClickListener(v -> loadFragment(new NotesFragment()));
 
         loadFragment(new HomeFragment());
