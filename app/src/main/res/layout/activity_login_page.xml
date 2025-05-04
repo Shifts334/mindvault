@@ -92,7 +92,6 @@
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:orientation="horizontal"
-                android:shapeAppearanceOverlay="@style/ShapeAppearance.MaterialComponents.SmallComponent"
                 android:weightSum="2">
 
                 <Button
