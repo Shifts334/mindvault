@@ -273,12 +273,17 @@
             <ImageView
                 android:layout_width="wrap_content"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 android:layout_height="55dp"
                 android:id="@+id/pomodoro"
                 android:clickable="true"
                 android:contentDescription="pomodoro"
                 android:focusable="true"
                 android:src="@drawable/ic_pomodoro" />
+=======
+                android:layout_height="55dp"/>
+<!--                android:src="@drawable/ic_home_pomodoro" -->
+>>>>>>> Stashed changes
 =======
                 android:layout_height="55dp"/>
 <!--                android:src="@drawable/ic_home_pomodoro" -->
