@@ -273,13 +273,17 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="55dp"
-                android:src="@drawable/ic_home_pomodoro" />
+                android:id="@+id/pomodoro"
+                android:clickable="true"
+                android:contentDescription="pomodoro"
+                android:focusable="true"
+                android:src="@drawable/ic_pomodoro" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="Add Note"
+                android:text="Start Pomodoro"
                 android:textSize="12dp" />
         </LinearLayout>
     </LinearLayout>
