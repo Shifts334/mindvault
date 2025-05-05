@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout navPlanner;
     LinearLayout navFlashcards;
     LinearLayout navProfile;
-    ImageView pomodoro;
+    LinearLayout pomodoro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +39,13 @@ public class MainActivity extends AppCompatActivity {
         navPlanner = findViewById(R.id.navPlanner);
         navFlashcards = findViewById(R.id.navFlashcards);
         navProfile = findViewById(R.id.navProfile);
-        ImageView pomodoro = findViewById(R.id.pomodoro);
+        pomodoro = findViewById(R.id.navPlanner);
 
-        pomodoro.setOnClickListener(v -> loadFragment(new PomodoroFragment()));
+
 
         navHome.setOnClickListener(v -> loadFragment(new HomeFragment()));
         navNotes.setOnClickListener(v -> loadFragment(new NotesFragment()));
-
+        pomodoro.setOnClickListener(v -> loadFragment(new PomodoroFragment()));
         loadFragment(new HomeFragment());
     }
 
