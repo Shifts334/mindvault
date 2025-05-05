@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout navPlanner;
     LinearLayout navFlashcards;
     LinearLayout navProfile;
-    ImageView pomodoro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
