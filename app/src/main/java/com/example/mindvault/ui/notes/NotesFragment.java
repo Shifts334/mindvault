@@ -15,56 +15,45 @@ import androidx.room.Room;
 
 import com.example.mindvault.R;
 import com.example.mindvault.data.AppDatabase;
+import com.example.mindvault.data.Note;
 import com.example.mindvault.data.NoteDao;
+import com.example.mindvault.ui.main.MainActivity;
 
 public class NotesFragment extends Fragment {
 
-    private AppDatabase db;
     private NoteDao noteDao;
     private NoteAdapter adapter;
     private RecyclerView recycler;
     private View emptyState;
 
-    public NotesFragment() {
-    }
-
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater,
-            @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_notes, container, false);
     }
 
     @Override
-    public void onViewCreated(@NonNull View root, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View root, Bundle savedInstanceState) {
         super.onViewCreated(root, savedInstanceState);
 
-        db = Room.databaseBuilder(requireContext(),
-                        AppDatabase.class,
-                        "mindvault-db")
+        AppDatabase db = Room.databaseBuilder(requireContext(), AppDatabase.class, "mindvault-db")
                 .allowMainThreadQueries()
                 .build();
-        noteDao = db.noteDao();
 
+        noteDao = db.noteDao();
         recycler = root.findViewById(R.id.recyclerNotes);
         emptyState = root.findViewById(R.id.emptyState);
 
-        recycler.setLayoutManager(new GridLayoutManager(requireContext(), 2));
+        recycler.setLayoutManager(new GridLayoutManager(requireContext(), 1));
 
         adapter = new NoteAdapter(
                 noteDao.getAllNotes(),
-                note -> {
-                    Intent i = new Intent(requireContext(), CreateNote.class);
-                    i.putExtra("note_id", note.id);
-                    startActivity(i);
-                });
+                note -> openFragment(CreateNoteFragment.newInstance(note.id)),
+                note -> confirmDelete(note)
+        );
         recycler.setAdapter(adapter);
 
         root.findViewById(R.id.buttonCreateNotesPage)
-                .setOnClickListener(v ->
-                        startActivity(new Intent(requireContext(), CreateNote.class)));
+                .setOnClickListener(v -> openFragment(CreateNoteFragment.newInstance(null)));
 
         updateVisibility();
     }
@@ -80,5 +69,27 @@ public class NotesFragment extends Fragment {
         boolean hasNotes = adapter.getItemCount() > 0;
         recycler.setVisibility(hasNotes ? View.VISIBLE : View.GONE);
         emptyState.setVisibility(hasNotes ? View.GONE : View.VISIBLE);
+    }
+
+    private void openFragment(Fragment f) {
+        requireActivity()
+                .getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentContainer, f)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    private void confirmDelete(Note note) {
+        new androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                .setTitle("Delete this note?")
+                .setMessage("This action can’t be undone.")
+                .setPositiveButton("Delete", (d, w) -> {
+                    noteDao.delete(note);
+                    adapter.setNotes(noteDao.getAllNotes());
+                    updateVisibility();
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 }

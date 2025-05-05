@@ -1,7 +1,6 @@
-package com.example.mindvault.ui.home;
+package com.example.mindvault.ui.main;
 
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
@@ -10,10 +9,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
-import com.example.mindvault.ui.pomodoro.PomodoroFragment;
+
 import com.example.mindvault.R;
-import com.example.mindvault.ui.main.HomeFragment;
+import com.example.mindvault.ui.home.HomeFragment;
 import com.example.mindvault.ui.notes.NotesFragment;
+import com.example.mindvault.ui.profile.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
     LinearLayout navHome;
@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout navPlanner;
     LinearLayout navFlashcards;
     LinearLayout navProfile;
-    ImageView pomodoro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +38,10 @@ public class MainActivity extends AppCompatActivity {
         navPlanner = findViewById(R.id.navPlanner);
         navFlashcards = findViewById(R.id.navFlashcards);
         navProfile = findViewById(R.id.navProfile);
-        ImageView pomodoro = findViewById(R.id.pomodoro);
-
-        pomodoro.setOnClickListener(v -> loadFragment(new PomodoroFragment()));
 
         navHome.setOnClickListener(v -> loadFragment(new HomeFragment()));
         navNotes.setOnClickListener(v -> loadFragment(new NotesFragment()));
+        navProfile.setOnClickListener(v -> loadFragment(new ProfileFragment()));
 
         loadFragment(new HomeFragment());
     }
