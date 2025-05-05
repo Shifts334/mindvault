@@ -13,11 +13,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mindvault.R;
+import com.example.mindvault.data.AppDatabase;
+import com.example.mindvault.data.User;
 import com.example.mindvault.ui.login.LoginPage;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.concurrent.Executors;
 
 public class SignUpPage extends AppCompatActivity {
 
@@ -94,6 +97,17 @@ public class SignUpPage extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Registration failed. Try again.", Toast.LENGTH_SHORT).show();
             }
+        });
+
+        AppDatabase db = AppDatabase.getInstance(this);
+        User newUser = new User();
+        newUser.email = emailInput.getText().toString();
+        newUser.password = passwordInput.getText().toString();
+        Executors.newSingleThreadExecutor().execute(() -> {
+            db.userDao().insertUser(newUser);
+            runOnUiThread(() ->
+                    Toast.makeText(this, "Registered!", Toast.LENGTH_SHORT).show()
+            );
         });
 
     }

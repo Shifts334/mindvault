@@ -1,5 +1,6 @@
 package com.example.mindvault.ui.forgotpass;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,12 +19,17 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.mindvault.R;
+import com.example.mindvault.data.AppDatabase;
+
+import java.text.BreakIterator;
+import java.util.concurrent.Executors;
 
 public class ForgotPasswordPage extends AppCompatActivity {
 
     private EditText password1, password2;
     private ImageView toggle1, toggle2;
     private boolean isPassword1Visible = false, isPassword2Visible = false;
+    private BreakIterator emailInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +99,16 @@ public class ForgotPasswordPage extends AppCompatActivity {
             String p1 = password1.getText().toString();
             String p2 = password2.getText().toString();
             // TODO: validate and send to your backend
+        });
+
+
+        AppDatabase db = AppDatabase.getInstance(this);
+        Executors.newSingleThreadExecutor().execute(() -> {
+            String newPass = "";
+            db.userDao().updatePassword(emailInput.getText().toString(), newPass);
+            runOnUiThread(() ->
+                    Toast.makeText(this, "Password updated", Toast.LENGTH_SHORT).show()
+            );
         });
     }
 

@@ -13,8 +13,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mindvault.R;
+import com.example.mindvault.data.AppDatabase;
+import com.example.mindvault.data.User;
 import com.example.mindvault.ui.forgotpass.ForgotPasswordPage;
 import com.example.mindvault.ui.sign_up.SignUpPage;
+
+import java.util.concurrent.Executors;
 
 public class LoginPage extends AppCompatActivity {
 
@@ -104,6 +108,21 @@ public class LoginPage extends AppCompatActivity {
         facebookButton.setOnClickListener(v ->
                 Toast.makeText(this, "Facebook Login tapped", Toast.LENGTH_SHORT).show()
         );
+
+        AppDatabase db = AppDatabase.getInstance(this);
+        Executors.newSingleThreadExecutor().execute(() -> {
+            String email = "";
+            String pwd = "";
+            User user = db.userDao().getUser(email, pwd);
+            runOnUiThread(() -> {
+                if (user != null) {
+                    // success → navigate
+                } else {
+                    Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
+
     }
 
     /** Stub method for demonstration */
