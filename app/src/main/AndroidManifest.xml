@@ -13,6 +13,9 @@
         android:theme="@style/Theme.MindVault"
         tools:targetApi="31">
         <activity
+            android:name=".ui.profile.Profile"
+            android:exported="false" />
+        <activity
             android:name=".ui.ForgotPasswordPage"
             android:exported="false" />
         <activity
