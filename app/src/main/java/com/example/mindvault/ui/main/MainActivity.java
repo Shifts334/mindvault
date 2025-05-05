@@ -1,7 +1,6 @@
 package com.example.mindvault.ui.main;
 
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
