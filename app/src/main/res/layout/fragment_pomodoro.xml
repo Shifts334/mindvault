@@ -66,10 +66,8 @@
                 android:id="@+id/skipButton"
                 android:src="@drawable/ic_skip"
                 android:background="@drawable/bg_round"
-                android:contentDescription="Skip" />
+                android:contentDescription="Skip but doesnt work" />
         </LinearLayout>
-
-        <include layout="@layout/activity_main" />
 
     </LinearLayout>
 

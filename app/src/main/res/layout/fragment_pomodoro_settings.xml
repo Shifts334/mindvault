@@ -132,6 +132,5 @@
             android:text="Save Settings"
             android:layout_marginBottom="306dp"/>
 
-        <include layout="@layout/activity_main" />
     </LinearLayout>
 </ScrollView>

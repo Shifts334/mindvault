@@ -6,6 +6,8 @@ import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -14,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.example.mindvault.R;
 import com.example.mindvault.ui.home.HomeFragment;
 import com.example.mindvault.ui.notes.NotesFragment;
+import com.example.mindvault.ui.profile.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
     LinearLayout navHome;
