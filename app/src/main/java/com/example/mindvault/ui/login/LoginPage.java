@@ -13,7 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mindvault.R;
-import com.example.mindvault.ui.ForgotPasswordPage;
+import com.example.mindvault.ui.forgotpass.ForgotPasswordPage;
 import com.example.mindvault.ui.sign_up.SignUpPage;
 
 public class LoginPage extends AppCompatActivity {

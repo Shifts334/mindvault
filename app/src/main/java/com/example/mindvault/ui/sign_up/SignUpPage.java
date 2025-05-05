@@ -32,8 +32,8 @@ public class SignUpPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_page);
 
+
         // Bind views
-        backButton      = findViewById(R.id.backButton);
         usernameInput   = findViewById(R.id.usernameInput);
         emailInput      = findViewById(R.id.emailInput);
         dobInput        = findViewById(R.id.dobInput);
@@ -42,8 +42,6 @@ public class SignUpPage extends AppCompatActivity {
         loginText       = findViewById(R.id.loginText);
         registerButton  = findViewById(R.id.registerButton);
 
-        // Back arrow → close this Activity
-        backButton.setOnClickListener(v -> finish());
 
         // “Already have an account? Login” → go to LoginPage
         loginText.setOnClickListener(v -> {
@@ -97,6 +95,7 @@ public class SignUpPage extends AppCompatActivity {
                 Toast.makeText(this, "Registration failed. Try again.", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     /** Shows a date picker and fills dobInput with MM/dd/yyyy */
