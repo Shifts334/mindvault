@@ -6,8 +6,6 @@ import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -42,12 +40,10 @@ public class MainActivity extends AppCompatActivity {
         navPlanner = findViewById(R.id.navPlanner);
         navFlashcards = findViewById(R.id.navFlashcards);
         navProfile = findViewById(R.id.navProfile);
-//        ImageView pomodoro = findViewById(R.id.pomodoro);
-//
-//        pomodoro.setOnClickListener(v -> loadFragment(new PomodoroFragment()));
 
         navHome.setOnClickListener(v -> loadFragment(new HomeFragment()));
         navNotes.setOnClickListener(v -> loadFragment(new NotesFragment()));
+        navProfile.setOnClickListener(v -> loadFragment(new ProfileFragment()));
 
         loadFragment(new HomeFragment());
     }
